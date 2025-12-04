@@ -10,16 +10,13 @@ model:
 
 # Federated Learning Configuration
 fl:
-  n_clients: 5
-  n_rounds: 10
-  local_epochs: 5
-  fraction_fit: 1.0  # Fraction of clients to train per round
-  fraction_evaluate: 1.0  # Fraction of clients to evaluate per round
-  min_fit_clients: 2
-  min_evaluate_clients: 2
-  min_available_clients: 2
-  aggregation_strategy: 'fedavg'  # 'fedavg' or 'fedprox'
-  mu: 0.01  # For FedProx
+  mode: 'vertical'  # Vertical FL (VFL) với SplitNN architecture
+  n_parties: 2  # Bank và Insurer (1-1 relationship)
+  # Note: VFL không dùng aggregation strategy như HFL (Horizontal FL)
+  # VFL trao đổi gradients/embeddings giữa các parties, không average weights
+  # Các tham số sau chỉ dùng cho HFL (không áp dụng cho VFL):
+  # n_clients: 5  # Không dùng trong VFL
+  # aggregation_strategy: 'fedavg'  # Không dùng trong VFL
 
 # Data Configuration
 data:

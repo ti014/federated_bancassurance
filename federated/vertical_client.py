@@ -64,7 +64,9 @@ class BankBottomClient:
         bank_features: torch.Tensor,
         grad_from_top: torch.Tensor,
     ) -> Dict:
-        """Backward pass: nhận gradients từ Top Model và update Bottom Model.
+        """Backward pass: nhận gradients từ Top Model và tính gradients cho Bottom Model.
+        
+        LƯU Ý: Không gọi optimizer.step() ở đây. Server sẽ quản lý việc update weights.
         
         Args:
             bank_features: Financial features
@@ -74,16 +76,15 @@ class BankBottomClient:
             Dictionary với loss và metrics
         """
         self.model.train()
-        self.optimizer.zero_grad()
+        # KHÔNG gọi zero_grad() ở đây - Server sẽ quản lý
         
-        # Forward pass
+        # Forward pass để tạo lại computational graph
+        # (Vì embedding cũ đã mất graph khi qua hàm forward tách rời)
         embedding = self.model(bank_features.to(self.device))
         
         # Backward pass với gradients từ Top Model
+        # Chỉ tính gradients, KHÔNG update weights
         embedding.backward(grad_from_top.to(self.device))
-        
-        # Update weights
-        self.optimizer.step()
         
         # Calculate loss (approximate)
         loss = torch.mean(torch.sum(grad_from_top * embedding, dim=1))
@@ -174,6 +175,8 @@ class InsuranceTopClient:
     ) -> Tuple[torch.Tensor, Dict]:
         """Backward pass: tính loss và gradients.
         
+        LƯU Ý: Không gọi optimizer.step() ở đây. Server sẽ quản lý việc update weights.
+        
         Args:
             embedding: Embedding từ Bottom Model
             insurance_features: Insurance features
@@ -183,7 +186,7 @@ class InsuranceTopClient:
             Tuple (gradients_for_bottom, metrics_dict)
         """
         self.model.train()
-        self.optimizer.zero_grad()
+        # KHÔNG gọi zero_grad() ở đây - Server sẽ quản lý
         
         # Forward pass
         prediction = self.model(embedding.to(self.device), insurance_features.to(self.device))
@@ -192,7 +195,8 @@ class InsuranceTopClient:
         labels_tensor = labels.to(self.device).float()
         loss = self.criterion(prediction, labels_tensor)
         
-        # Backward pass
+        # Backward pass để tính gradients
+        # Chỉ tính gradients, KHÔNG update weights
         loss.backward()
         
         # Get gradients w.r.t embedding (để gửi về Bottom Model)
@@ -209,8 +213,7 @@ class InsuranceTopClient:
                 retain_graph=True,
             )[0]
         
-        # Update Top Model weights
-        self.optimizer.step()
+        # KHÔNG update weights ở đây - Server sẽ gọi optimizer.step()
         
         # Calculate metrics
         predictions_binary = (prediction > 0.5).float()

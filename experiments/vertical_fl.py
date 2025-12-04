@@ -215,6 +215,8 @@ def run_vertical_fl_training(
         'train_accuracies': [],
         'test_losses': [],
         'test_accuracies': [],
+        'test_f1_scores': [],  # Thêm F1 scores
+        'test_auc_scores': [],  # Thêm AUC scores
         'epochs': [],
     }
     
@@ -327,6 +329,9 @@ def run_vertical_fl_training(
             
             epoch_losses.append(loss_bce.item())
             epoch_accuracies.append(accuracy.item())
+            
+            # Note: F1 và AUC sẽ được tính ở evaluation phase trên toàn bộ test set
+            # để tránh tính toán không cần thiết trong mỗi batch
         
         avg_train_loss = np.mean(epoch_losses)
         avg_train_acc = np.mean(epoch_accuracies)
@@ -337,6 +342,9 @@ def run_vertical_fl_training(
         
         test_losses = []
         test_accuracies = []
+        all_labels = []
+        all_predictions = []
+        all_probabilities = []
         
         with torch.no_grad():
             for bank_batch, insurance_batch, labels_batch in test_loader:
@@ -357,9 +365,31 @@ def run_vertical_fl_training(
                 
                 test_losses.append(loss.item())
                 test_accuracies.append(accuracy.item())
+                
+                # Collect for F1 and AUC calculation
+                all_labels.append(labels_batch.cpu().numpy().flatten())
+                all_predictions.append(predictions_binary.cpu().numpy().flatten())
+                all_probabilities.append(prediction.cpu().numpy().flatten())
         
         avg_test_loss = np.mean(test_losses)
         avg_test_acc = np.mean(test_accuracies)
+        
+        # Calculate F1-Score and AUC trên toàn bộ test set
+        from sklearn.metrics import f1_score, roc_auc_score
+        
+        y_true = np.concatenate(all_labels)
+        y_pred_binary = np.concatenate(all_predictions)
+        y_pred_proba = np.concatenate(all_probabilities)
+        
+        if len(np.unique(y_true)) > 1:
+            f1 = f1_score(y_true, y_pred_binary, zero_division=0)
+            try:
+                auc = roc_auc_score(y_true, y_pred_proba)
+            except ValueError:
+                auc = 0.5
+        else:
+            f1 = 0.0
+            auc = 0.5
         
         # Learning rate scheduling
         scheduler_bank.step(avg_test_loss)
@@ -370,6 +400,8 @@ def run_vertical_fl_training(
         history['train_accuracies'].append(avg_train_acc)
         history['test_losses'].append(avg_test_loss)
         history['test_accuracies'].append(avg_test_acc)
+        history['test_f1_scores'].append(f1)
+        history['test_auc_scores'].append(auc)
         history['epochs'].append(epoch + 1)
         
         # Early stopping
@@ -386,6 +418,8 @@ def run_vertical_fl_training(
                 'train_acc': f'{avg_train_acc:.4f}',
                 'test_loss': f'{avg_test_loss:.4f}',
                 'test_acc': f'{avg_test_acc:.4f}',
+                'test_f1': f'{f1:.4f}',
+                'test_auc': f'{auc:.4f}',
                 'lr': f'{current_lr:.6f}',
             })
         
@@ -394,6 +428,7 @@ def run_vertical_fl_training(
             logger.info(f"Epoch {epoch + 1}/{epochs}:")
             logger.info(f"  Train Loss: {avg_train_loss:.4f}, Train Acc: {avg_train_acc:.4f}")
             logger.info(f"  Test Loss: {avg_test_loss:.4f}, Test Acc: {avg_test_acc:.4f}")
+            logger.info(f"  Test F1: {f1:.4f}, Test AUC: {auc:.4f}")
             logger.info(f"  Learning Rate: {bank_client.optimizer.param_groups[0]['lr']:.6f}")
         
         # Early stopping check

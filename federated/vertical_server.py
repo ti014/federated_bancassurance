@@ -10,6 +10,7 @@ import torch
 import numpy as np
 from typing import Dict, List, Tuple, Optional
 from tqdm import tqdm
+from sklearn.metrics import f1_score, roc_auc_score
 
 from federated.vertical_client import BankBottomClient, InsuranceTopClient
 from utils.metrics import evaluate_model
@@ -141,21 +142,42 @@ class VerticalFLServer:
         # Clip gradients
         torch.nn.utils.clip_grad_norm_(self.bank_client.model.parameters(), max_norm=1.0)
         
-        # 6. Update models
+        # 6. Update models (Server quản lý optimizer.step())
         self.insurance_client.optimizer.step()
         self.bank_client.optimizer.step()
         
         # Metrics
         predictions_binary = (prediction > 0.5).float()
-        accuracy = (predictions_binary == labels.to(self.device)).float().mean()
+        labels_tensor = labels.to(self.device)
+        accuracy = (predictions_binary == labels_tensor).float().mean()
         
         # Convert loss từ logits về probability loss cho tracking
         with torch.no_grad():
-            loss_bce = nn.BCELoss()(prediction, labels.to(self.device))
+            loss_bce = nn.BCELoss()(prediction, labels_tensor)
+        
+        # Tính F1-Score và AUC (quan trọng cho imbalanced data)
+        y_true = labels_tensor.cpu().numpy().flatten()
+        y_pred_proba = prediction.detach().cpu().numpy().flatten()
+        y_pred_binary = predictions_binary.cpu().numpy().flatten()
+        
+        # F1-Score: Check xem có cả 2 classes không để tránh lỗi
+        if len(np.unique(y_true)) > 1:
+            f1 = f1_score(y_true, y_pred_binary, zero_division=0)
+            try:
+                auc = roc_auc_score(y_true, y_pred_proba)
+            except ValueError:
+                # Nếu chỉ có 1 class trong batch, AUC không tính được
+                auc = 0.5
+        else:
+            # Nếu chỉ có 1 class trong batch
+            f1 = 0.0
+            auc = 0.5
         
         return {
             'loss': loss_bce.item(),
             'accuracy': accuracy.item(),
+            'f1': f1,
+            'auc': auc,
         }
     
     def train_round(
