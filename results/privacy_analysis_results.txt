@@ -1,0 +1,101 @@
+2025-12-04 10:45:59,219 - privacy_analysis - INFO - ================================================================================
+2025-12-04 10:45:59,220 - privacy_analysis - INFO - PRIVACY ANALYSIS
+2025-12-04 10:45:59,220 - privacy_analysis - INFO - ================================================================================
+2025-12-04 10:45:59,220 - privacy_analysis - INFO - 
+Loading data...
+[OK] Converted Bank Churn to Vertical FL format (Bancassurance):
+  - Bank data: 10000 samples, 10 features
+    Features: ['CreditScore', 'Geography', 'Gender', 'Age', 'Tenure', 'Balance', 'NumOfProducts', 'HasCrCard', 'IsActiveMember', 'EstimatedSalary']
+  - Insurance data: 10000 samples, 6 features
+    Features: ['premium', 'policy_term', 'coverage', 'payment_frequency', 'policy_type', 'age_group']
+  - Generated in memory (not saved)
+2025-12-04 10:45:59,332 - privacy_analysis - INFO - 
+Loading trained Bottom Model...
+2025-12-04 10:45:59,350 - privacy_analysis - INFO - Model loaded successfully!
+2025-12-04 10:45:59,350 - privacy_analysis - INFO - 
+Running privacy analysis...
+================================================================================
+PRIVACY ANALYSIS: Can we recover raw data from embedding?
+================================================================================
+
+Embedding shape: (2000, 64)
+Original features shape: (2000, 10)
+
+--------------------------------------------------------------------------------
+Attempting to recover original features from embedding...
+--------------------------------------------------------------------------------
+
+Feature_0:
+  MSE: 0.2302
+  MAE: 0.3653
+  R▓: 0.7712
+  Recovery Quality: GOOD
+
+Feature_1:
+  MSE: 0.1191
+  MAE: 0.2682
+  R▓: 0.8784
+  Recovery Quality: GOOD
+
+Feature_2:
+  MSE: 0.3155
+  MAE: 0.4480
+  R▓: 0.6859
+  Recovery Quality: MODERATE
+
+Feature_3:
+  MSE: 0.0582
+  MAE: 0.1891
+  R▓: 0.9395
+  Recovery Quality: GOOD
+
+Feature_4:
+  MSE: 0.1760
+  MAE: 0.3271
+  R▓: 0.8211
+  Recovery Quality: GOOD
+
+Feature_5:
+  MSE: 0.0940
+  MAE: 0.2448
+  R▓: 0.9075
+  Recovery Quality: GOOD
+
+Feature_6:
+  MSE: 0.0555
+  MAE: 0.1827
+  R▓: 0.9444
+  Recovery Quality: GOOD
+
+Feature_7:
+  MSE: 0.2897
+  MAE: 0.4183
+  R▓: 0.7192
+  Recovery Quality: GOOD
+
+Feature_8:
+  MSE: 0.1042
+  MAE: 0.2561
+  R▓: 0.8958
+  Recovery Quality: GOOD
+
+Feature_9:
+  MSE: 0.2100
+  MAE: 0.3623
+  R▓: 0.7961
+  Recovery Quality: GOOD
+
+================================================================================
+PRIVACY ANALYSIS SUMMARY
+================================================================================
+
+Average R▓ (reconstruction quality): 0.8359
+Privacy Level: LOW
+Conclusion: Embedding may leak information. Consider increasing embedding size or adding noise.
+
+[OK] Privacy analysis results saved to results\privacy_analysis
+2025-12-04 10:46:05,376 - privacy_analysis - INFO - 
+================================================================================
+2025-12-04 10:46:05,377 - privacy_analysis - INFO - PRIVACY ANALYSIS COMPLETED!
+2025-12-04 10:46:05,378 - privacy_analysis - INFO - ================================================================================
+2025-12-04 10:46:05,378 - privacy_analysis - INFO - Results saved to: results/privacy_analysis/

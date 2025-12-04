@@ -1,0 +1,350 @@
+================================================================================
+COMPARISON: Vertical FL vs Centralized Learning
+================================================================================
+
+Loading data...
+[OK] Converted Bank Churn to Vertical FL format (Bancassurance):
+  - Bank data: 10000 samples, 10 features
+    Features: ['CreditScore', 'Geography', 'Gender', 'Age', 'Tenure', 'Balance', 'NumOfProducts', 'HasCrCard', 'IsActiveMember', 'EstimatedSalary']
+  - Insurance data: 10000 samples, 6 features
+    Features: ['premium', 'policy_term', 'coverage', 'payment_frequency', 'policy_type', 'age_group']
+  - Generated in memory (not saved)
+
+================================================================================
+Running Vertical FL...
+================================================================================
+2025-12-04 11:35:38,492 - vertical_fl_experiment - INFO - Applying SMOTE to handle class imbalance...
+2025-12-04 11:35:38,493 - vertical_fl_experiment - INFO -   Before: Positive=1630/8000 (20.38%)
+2025-12-04 11:35:39,999 - vertical_fl_experiment - INFO -   After: Positive=6370/12740 (50.00%)
+2025-12-04 11:35:40,000 - vertical_fl_experiment - INFO -   Samples increased from 8000 to 12740
+2025-12-04 11:35:42,017 - vertical_fl_experiment - INFO - 
+Starting training for 100 epochs...
+2025-12-04 11:35:42,017 - vertical_fl_experiment - INFO -   Batch size: 64
+2025-12-04 11:35:42,018 - vertical_fl_experiment - INFO -   Learning rate: 0.0005
+2025-12-04 11:35:42,018 - vertical_fl_experiment - INFO -   Device: cpu
+2025-12-04 11:35:42,018 - vertical_fl_experiment - INFO -   Training samples: 12740
+2025-12-04 11:35:42,018 - vertical_fl_experiment - INFO -   Test samples: 2000
+
+Vertical FL Training:   0%|          | 0/100 [00:00<?, ?it/s]
+Vertical FL Training:   0%|          | 0/100 [00:03<?, ?it/s, train_loss=0.5552, train_acc=0.7102, test_loss=0.4705, test_acc=0.7832, lr=0.000500]
+Vertical FL Training:   1%|1         | 1/100 [00:03<05:53,  3.57s/it, train_loss=0.5552, train_acc=0.7102, test_loss=0.4705, test_acc=0.7832, lr=0.000500]
+Vertical FL Training:   1%|1         | 1/100 [00:07<05:53,  3.57s/it, train_loss=0.4760, train_acc=0.7742, test_loss=0.4875, test_acc=0.7500, lr=0.000500]
+Vertical FL Training:   2%|2         | 2/100 [00:07<05:50,  3.58s/it, train_loss=0.4760, train_acc=0.7742, test_loss=0.4875, test_acc=0.7500, lr=0.000500]
+Vertical FL Training:   2%|2         | 2/100 [00:11<05:50,  3.58s/it, train_loss=0.4497, train_acc=0.7890, test_loss=0.4598, test_acc=0.7832, lr=0.000500]
+Vertical FL Training:   3%|3         | 3/100 [00:11<06:22,  3.94s/it, train_loss=0.4497, train_acc=0.7890, test_loss=0.4598, test_acc=0.7832, lr=0.000500]
+Vertical FL Training:   3%|3         | 3/100 [00:15<06:22,  3.94s/it, train_loss=0.4427, train_acc=0.8005, test_loss=0.4500, test_acc=0.7827, lr=0.000500]
+Vertical FL Training:   4%|4         | 4/100 [00:15<06:14,  3.90s/it, train_loss=0.4427, train_acc=0.8005, test_loss=0.4500, test_acc=0.7827, lr=0.000500]
+Vertical FL Training:   4%|4         | 4/100 [00:20<06:14,  3.90s/it, train_loss=0.4323, train_acc=0.8054, test_loss=0.4318, test_acc=0.7817, lr=0.000500]
+Vertical FL Training:   5%|5         | 5/100 [00:20<06:36,  4.17s/it, train_loss=0.4323, train_acc=0.8054, test_loss=0.4318, test_acc=0.7817, lr=0.000500]
+Vertical FL Training:   5%|5         | 5/100 [00:23<06:36,  4.17s/it, train_loss=0.4240, train_acc=0.8095, test_loss=0.4475, test_acc=0.7905, lr=0.000500]
+Vertical FL Training:   6%|6         | 6/100 [00:23<06:12,  3.96s/it, train_loss=0.4240, train_acc=0.8095, test_loss=0.4475, test_acc=0.7905, lr=0.000500]
+Vertical FL Training:   6%|6         | 6/100 [00:27<06:12,  3.96s/it, train_loss=0.4164, train_acc=0.8118, test_loss=0.4089, test_acc=0.8135, lr=0.000500]
+Vertical FL Training:   7%|7         | 7/100 [00:27<06:07,  3.96s/it, train_loss=0.4164, train_acc=0.8118, test_loss=0.4089, test_acc=0.8135, lr=0.000500]
+Vertical FL Training:   7%|7         | 7/100 [00:31<06:07,  3.96s/it, train_loss=0.4167, train_acc=0.8113, test_loss=0.4623, test_acc=0.7622, lr=0.000500]
+Vertical FL Training:   8%|8         | 8/100 [00:31<06:09,  4.01s/it, train_loss=0.4167, train_acc=0.8113, test_loss=0.4623, test_acc=0.7622, lr=0.000500]
+Vertical FL Training:   8%|8         | 8/100 [00:35<06:09,  4.01s/it, train_loss=0.4081, train_acc=0.8155, test_loss=0.4653, test_acc=0.7754, lr=0.000500]
+Vertical FL Training:   9%|9         | 9/100 [00:35<05:49,  3.84s/it, train_loss=0.4081, train_acc=0.8155, test_loss=0.4653, test_acc=0.7754, lr=0.000500]
+2025-12-04 11:36:21,942 - vertical_fl_experiment - INFO - Epoch 10/100:
+2025-12-04 11:36:21,942 - vertical_fl_experiment - INFO -   Train Loss: 0.4002, Train Acc: 0.8200
+2025-12-04 11:36:21,942 - vertical_fl_experiment - INFO -   Test Loss: 0.4217, Test Acc: 0.7930
+2025-12-04 11:36:21,942 - vertical_fl_experiment - INFO -   Learning Rate: 0.000500
+Vertical FL Training:   9%|9         | 9/100 [00:39<05:49,  3.84s/it, train_loss=0.4002, train_acc=0.8200, test_loss=0.4217, test_acc=0.7930, lr=0.000500]
+Vertical FL Training:  10%|#         | 10/100 [00:39<06:12,  4.14s/it, train_loss=0.4002, train_acc=0.8200, test_loss=0.4217, test_acc=0.7930, lr=0.000500]
+Vertical FL Training:  10%|#         | 10/100 [00:45<06:12,  4.14s/it, train_loss=0.3997, train_acc=0.8194, test_loss=0.4347, test_acc=0.7925, lr=0.000500]
+Vertical FL Training:  11%|#1        | 11/100 [00:45<06:52,  4.63s/it, train_loss=0.3997, train_acc=0.8194, test_loss=0.4347, test_acc=0.7925, lr=0.000500]
+Vertical FL Training:  11%|#1        | 11/100 [00:49<06:52,  4.63s/it, train_loss=0.3972, train_acc=0.8198, test_loss=0.4235, test_acc=0.7959, lr=0.000500]
+Vertical FL Training:  12%|#2        | 12/100 [00:49<06:17,  4.29s/it, train_loss=0.3972, train_acc=0.8198, test_loss=0.4235, test_acc=0.7959, lr=0.000500]
+Vertical FL Training:  12%|#2        | 12/100 [00:53<06:17,  4.29s/it, train_loss=0.3914, train_acc=0.8253, test_loss=0.4465, test_acc=0.7783, lr=0.000500]
+Vertical FL Training:  13%|#3        | 13/100 [00:53<06:05,  4.21s/it, train_loss=0.3914, train_acc=0.8253, test_loss=0.4465, test_acc=0.7783, lr=0.000500]
+Vertical FL Training:  13%|#3        | 13/100 [00:57<06:05,  4.21s/it, train_loss=0.3914, train_acc=0.8232, test_loss=0.4240, test_acc=0.7886, lr=0.000500]
+Vertical FL Training:  14%|#4        | 14/100 [00:57<05:58,  4.17s/it, train_loss=0.3914, train_acc=0.8232, test_loss=0.4240, test_acc=0.7886, lr=0.000500]
+Vertical FL Training:  14%|#4        | 14/100 [01:01<05:58,  4.17s/it, train_loss=0.3868, train_acc=0.8308, test_loss=0.4287, test_acc=0.7935, lr=0.000500]
+Vertical FL Training:  15%|#5        | 15/100 [01:01<05:43,  4.04s/it, train_loss=0.3868, train_acc=0.8308, test_loss=0.4287, test_acc=0.7935, lr=0.000500]
+Vertical FL Training:  15%|#5        | 15/100 [01:05<05:43,  4.04s/it, train_loss=0.3826, train_acc=0.8312, test_loss=0.4317, test_acc=0.7896, lr=0.000500]
+Vertical FL Training:  16%|#6        | 16/100 [01:05<05:48,  4.14s/it, train_loss=0.3826, train_acc=0.8312, test_loss=0.4317, test_acc=0.7896, lr=0.000500]
+Vertical FL Training:  16%|#6        | 16/100 [01:09<05:48,  4.14s/it, train_loss=0.3762, train_acc=0.8319, test_loss=0.4035, test_acc=0.8145, lr=0.000500]
+Vertical FL Training:  17%|#7        | 17/100 [01:09<05:33,  4.02s/it, train_loss=0.3762, train_acc=0.8319, test_loss=0.4035, test_acc=0.8145, lr=0.000500]
+Vertical FL Training:  17%|#7        | 17/100 [01:12<05:33,  4.02s/it, train_loss=0.3743, train_acc=0.8336, test_loss=0.4468, test_acc=0.7822, lr=0.000500]
+Vertical FL Training:  18%|#8        | 18/100 [01:12<05:10,  3.79s/it, train_loss=0.3743, train_acc=0.8336, test_loss=0.4468, test_acc=0.7822, lr=0.000500]
+Vertical FL Training:  18%|#8        | 18/100 [01:15<05:10,  3.79s/it, train_loss=0.3750, train_acc=0.8330, test_loss=0.4356, test_acc=0.7793, lr=0.000500]
+Vertical FL Training:  19%|#9        | 19/100 [01:15<04:59,  3.69s/it, train_loss=0.3750, train_acc=0.8330, test_loss=0.4356, test_acc=0.7793, lr=0.000500]
+2025-12-04 11:37:01,989 - vertical_fl_experiment - INFO - Epoch 20/100:
+2025-12-04 11:37:01,989 - vertical_fl_experiment - INFO -   Train Loss: 0.3754, Train Acc: 0.8305
+2025-12-04 11:37:01,989 - vertical_fl_experiment - INFO -   Test Loss: 0.4100, Test Acc: 0.8037
+2025-12-04 11:37:01,989 - vertical_fl_experiment - INFO -   Learning Rate: 0.000500
+Vertical FL Training:  19%|#9        | 19/100 [01:19<04:59,  3.69s/it, train_loss=0.3754, train_acc=0.8305, test_loss=0.4100, test_acc=0.8037, lr=0.000500]
+Vertical FL Training:  20%|##        | 20/100 [01:19<05:05,  3.82s/it, train_loss=0.3754, train_acc=0.8305, test_loss=0.4100, test_acc=0.8037, lr=0.000500]
+Vertical FL Training:  20%|##        | 20/100 [01:23<05:05,  3.82s/it, train_loss=0.3744, train_acc=0.8327, test_loss=0.4278, test_acc=0.8081, lr=0.000500]
+Vertical FL Training:  21%|##1       | 21/100 [01:23<04:58,  3.78s/it, train_loss=0.3744, train_acc=0.8327, test_loss=0.4278, test_acc=0.8081, lr=0.000500]
+Vertical FL Training:  21%|##1       | 21/100 [01:26<04:58,  3.78s/it, train_loss=0.3696, train_acc=0.8364, test_loss=0.4382, test_acc=0.8037, lr=0.000500]
+Vertical FL Training:  22%|##2       | 22/100 [01:26<04:44,  3.64s/it, train_loss=0.3696, train_acc=0.8364, test_loss=0.4382, test_acc=0.8037, lr=0.000500]
+Vertical FL Training:  22%|##2       | 22/100 [01:30<04:44,  3.64s/it, train_loss=0.3655, train_acc=0.8386, test_loss=0.4313, test_acc=0.7998, lr=0.000500]
+Vertical FL Training:  23%|##3       | 23/100 [01:30<04:39,  3.63s/it, train_loss=0.3655, train_acc=0.8386, test_loss=0.4313, test_acc=0.7998, lr=0.000500]
+Vertical FL Training:  23%|##3       | 23/100 [01:33<04:39,  3.63s/it, train_loss=0.3613, train_acc=0.8384, test_loss=0.4915, test_acc=0.7676, lr=0.000500]
+Vertical FL Training:  24%|##4       | 24/100 [01:33<04:30,  3.56s/it, train_loss=0.3613, train_acc=0.8384, test_loss=0.4915, test_acc=0.7676, lr=0.000500]
+Vertical FL Training:  24%|##4       | 24/100 [01:37<04:30,  3.56s/it, train_loss=0.3631, train_acc=0.8385, test_loss=0.4843, test_acc=0.7715, lr=0.000500]
+Vertical FL Training:  25%|##5       | 25/100 [01:37<04:23,  3.52s/it, train_loss=0.3631, train_acc=0.8385, test_loss=0.4843, test_acc=0.7715, lr=0.000500]
+Vertical FL Training:  25%|##5       | 25/100 [01:40<04:23,  3.52s/it, train_loss=0.3645, train_acc=0.8404, test_loss=0.4415, test_acc=0.8008, lr=0.000500]
+Vertical FL Training:  26%|##6       | 26/100 [01:40<04:15,  3.45s/it, train_loss=0.3645, train_acc=0.8404, test_loss=0.4415, test_acc=0.8008, lr=0.000500]
+Vertical FL Training:  26%|##6       | 26/100 [01:43<04:15,  3.45s/it, train_loss=0.3587, train_acc=0.8428, test_loss=0.4422, test_acc=0.7974, lr=0.000500]
+Vertical FL Training:  27%|##7       | 27/100 [01:43<04:06,  3.38s/it, train_loss=0.3587, train_acc=0.8428, test_loss=0.4422, test_acc=0.7974, lr=0.000500]
+Vertical FL Training:  27%|##7       | 27/100 [01:47<04:06,  3.38s/it, train_loss=0.3637, train_acc=0.8395, test_loss=0.4657, test_acc=0.7871, lr=0.000250]
+Vertical FL Training:  28%|##8       | 28/100 [01:47<04:01,  3.35s/it, train_loss=0.3637, train_acc=0.8395, test_loss=0.4657, test_acc=0.7871, lr=0.000250]
+Vertical FL Training:  28%|##8       | 28/100 [01:50<04:01,  3.35s/it, train_loss=0.3480, train_acc=0.8478, test_loss=0.4420, test_acc=0.7969, lr=0.000250]
+Vertical FL Training:  29%|##9       | 29/100 [01:50<03:56,  3.33s/it, train_loss=0.3480, train_acc=0.8478, test_loss=0.4420, test_acc=0.7969, lr=0.000250]
+2025-12-04 11:37:35,881 - vertical_fl_experiment - INFO - Epoch 30/100:
+2025-12-04 11:37:35,881 - vertical_fl_experiment - INFO -   Train Loss: 0.3457, Train Acc: 0.8431
+2025-12-04 11:37:35,882 - vertical_fl_experiment - INFO -   Test Loss: 0.4539, Test Acc: 0.7954
+2025-12-04 11:37:35,882 - vertical_fl_experiment - INFO -   Learning Rate: 0.000250
+Vertical FL Training:  29%|##9       | 29/100 [01:53<03:56,  3.33s/it, train_loss=0.3457, train_acc=0.8431, test_loss=0.4539, test_acc=0.7954, lr=0.000250]
+Vertical FL Training:  30%|###       | 30/100 [01:53<03:54,  3.35s/it, train_loss=0.3457, train_acc=0.8431, test_loss=0.4539, test_acc=0.7954, lr=0.000250]
+Vertical FL Training:  30%|###       | 30/100 [01:57<03:54,  3.35s/it, train_loss=0.3589, train_acc=0.8419, test_loss=0.4451, test_acc=0.7842, lr=0.000250]
+Vertical FL Training:  31%|###1      | 31/100 [01:57<03:51,  3.35s/it, train_loss=0.3589, train_acc=0.8419, test_loss=0.4451, test_acc=0.7842, lr=0.000250]
+Vertical FL Training:  31%|###1      | 31/100 [02:00<03:51,  3.35s/it, train_loss=0.3509, train_acc=0.8458, test_loss=0.4506, test_acc=0.7866, lr=0.000250]
+Vertical FL Training:  32%|###2      | 32/100 [02:00<03:51,  3.41s/it, train_loss=0.3509, train_acc=0.8458, test_loss=0.4506, test_acc=0.7866, lr=0.000250]
+Vertical FL Training:  32%|###2      | 32/100 [02:04<03:51,  3.41s/it, train_loss=0.3476, train_acc=0.8490, test_loss=0.4435, test_acc=0.8032, lr=0.000250]
+Vertical FL Training:  33%|###3      | 33/100 [02:04<03:46,  3.38s/it, train_loss=0.3476, train_acc=0.8490, test_loss=0.4435, test_acc=0.8032, lr=0.000250]
+Vertical FL Training:  33%|###3      | 33/100 [02:07<03:46,  3.38s/it, train_loss=0.3434, train_acc=0.8491, test_loss=0.4470, test_acc=0.8013, lr=0.000250]
+Vertical FL Training:  34%|###4      | 34/100 [02:07<03:52,  3.52s/it, train_loss=0.3434, train_acc=0.8491, test_loss=0.4470, test_acc=0.8013, lr=0.000250]
+Vertical FL Training:  34%|###4      | 34/100 [02:11<03:52,  3.52s/it, train_loss=0.3499, train_acc=0.8478, test_loss=0.4386, test_acc=0.7983, lr=0.000250]
+Vertical FL Training:  35%|###5      | 35/100 [02:11<03:44,  3.45s/it, train_loss=0.3499, train_acc=0.8478, test_loss=0.4386, test_acc=0.7983, lr=0.000250]
+Vertical FL Training:  35%|###5      | 35/100 [02:14<03:44,  3.45s/it, train_loss=0.3428, train_acc=0.8481, test_loss=0.4597, test_acc=0.7749, lr=0.000250]
+Vertical FL Training:  36%|###6      | 36/100 [02:14<03:38,  3.42s/it, train_loss=0.3428, train_acc=0.8481, test_loss=0.4597, test_acc=0.7749, lr=0.000250]
+2025-12-04 11:38:00,920 - vertical_fl_experiment - INFO - Early stopping triggered at epoch 37
+2025-12-04 11:38:00,920 - vertical_fl_experiment - INFO -   Best test loss: 0.4035
+2025-12-04 11:38:00,920 - vertical_fl_experiment - INFO -   Patience: 20/20
+Vertical FL Training:  36%|###6      | 36/100 [02:18<03:38,  3.42s/it, train_loss=0.3429, train_acc=0.8498, test_loss=0.4482, test_acc=0.7842, lr=0.000250]
+Vertical FL Training:  36%|###6      | 36/100 [02:18<04:06,  3.86s/it, train_loss=0.3429, train_acc=0.8498, test_loss=0.4482, test_acc=0.7842, lr=0.000250]
+
+================================================================================
+Running Centralized Baseline...
+================================================================================
+
+Training:   0%|          | 0/100 [00:00<?, ?it/s]
+Training:   0%|          | 0/100 [00:01<?, ?it/s, train_loss=1.9295, test_loss=1.5536, test_acc=0.7965]
+Training:   1%|1         | 1/100 [00:01<02:00,  1.22s/it, train_loss=1.9295, test_loss=1.5536, test_acc=0.7965]
+Training:   1%|1         | 1/100 [00:02<02:00,  1.22s/it, train_loss=1.5578, test_loss=1.4115, test_acc=0.8560]
+Training:   2%|2         | 2/100 [00:02<02:00,  1.23s/it, train_loss=1.5578, test_loss=1.4115, test_acc=0.8560]
+Training:   2%|2         | 2/100 [00:03<02:00,  1.23s/it, train_loss=1.4788, test_loss=1.3923, test_acc=0.8550]
+Training:   3%|3         | 3/100 [00:03<01:58,  1.22s/it, train_loss=1.4788, test_loss=1.3923, test_acc=0.8550]
+Training:   3%|3         | 3/100 [00:04<01:58,  1.22s/it, train_loss=1.4436, test_loss=1.3864, test_acc=0.8555]
+Training:   4%|4         | 4/100 [00:04<02:00,  1.26s/it, train_loss=1.4436, test_loss=1.3864, test_acc=0.8555]
+Training:   4%|4         | 4/100 [00:06<02:00,  1.26s/it, train_loss=1.4190, test_loss=1.3777, test_acc=0.8530]
+Training:   5%|5         | 5/100 [00:06<02:00,  1.27s/it, train_loss=1.4190, test_loss=1.3777, test_acc=0.8530]
+Training:   5%|5         | 5/100 [00:07<02:00,  1.27s/it, train_loss=1.4135, test_loss=1.3611, test_acc=0.8545]
+Training:   6%|6         | 6/100 [00:07<01:56,  1.24s/it, train_loss=1.4135, test_loss=1.3611, test_acc=0.8545]
+Training:   6%|6         | 6/100 [00:08<01:56,  1.24s/it, train_loss=1.4021, test_loss=1.3893, test_acc=0.8570]
+Training:   7%|7         | 7/100 [00:08<01:56,  1.26s/it, train_loss=1.4021, test_loss=1.3893, test_acc=0.8570]
+Training:   7%|7         | 7/100 [00:09<01:56,  1.26s/it, train_loss=1.3710, test_loss=1.3547, test_acc=0.8595]
+Training:   8%|8         | 8/100 [00:09<01:55,  1.25s/it, train_loss=1.3710, test_loss=1.3547, test_acc=0.8595]
+Training:   8%|8         | 8/100 [00:11<01:55,  1.25s/it, train_loss=1.3630, test_loss=1.3672, test_acc=0.8550]
+Training:   9%|9         | 9/100 [00:11<02:02,  1.35s/it, train_loss=1.3630, test_loss=1.3672, test_acc=0.8550]
+Training:   9%|9         | 9/100 [00:12<02:02,  1.35s/it, train_loss=1.3573, test_loss=1.3558, test_acc=0.8565]
+Training:  10%|#         | 10/100 [00:12<01:57,  1.30s/it, train_loss=1.3573, test_loss=1.3558, test_acc=0.8565]
+Training:  10%|#         | 10/100 [00:14<01:57,  1.30s/it, train_loss=1.3420, test_loss=1.3547, test_acc=0.8575]
+Training:  11%|#1        | 11/100 [00:14<01:55,  1.30s/it, train_loss=1.3420, test_loss=1.3547, test_acc=0.8575]
+Training:  11%|#1        | 11/100 [00:15<01:55,  1.30s/it, train_loss=1.3292, test_loss=1.3699, test_acc=0.8610]
+Training:  12%|#2        | 12/100 [00:15<01:53,  1.29s/it, train_loss=1.3292, test_loss=1.3699, test_acc=0.8610]
+Training:  12%|#2        | 12/100 [00:16<01:53,  1.29s/it, train_loss=1.3270, test_loss=1.3485, test_acc=0.8555]
+Training:  13%|#3        | 13/100 [00:16<01:50,  1.27s/it, train_loss=1.3270, test_loss=1.3485, test_acc=0.8555]
+Training:  13%|#3        | 13/100 [00:17<01:50,  1.27s/it, train_loss=1.3107, test_loss=1.3506, test_acc=0.8605]
+Training:  14%|#4        | 14/100 [00:17<01:48,  1.26s/it, train_loss=1.3107, test_loss=1.3506, test_acc=0.8605]
+Training:  14%|#4        | 14/100 [00:19<01:48,  1.26s/it, train_loss=1.3113, test_loss=1.3472, test_acc=0.8570]
+Training:  15%|#5        | 15/100 [00:19<01:47,  1.27s/it, train_loss=1.3113, test_loss=1.3472, test_acc=0.8570]
+Training:  15%|#5        | 15/100 [00:20<01:47,  1.27s/it, train_loss=1.3057, test_loss=1.3514, test_acc=0.8580]
+Training:  16%|#6        | 16/100 [00:20<01:47,  1.27s/it, train_loss=1.3057, test_loss=1.3514, test_acc=0.8580]
+Training:  16%|#6        | 16/100 [00:21<01:47,  1.27s/it, train_loss=1.2986, test_loss=1.3603, test_acc=0.8600]
+Training:  17%|#7        | 17/100 [00:21<01:45,  1.27s/it, train_loss=1.2986, test_loss=1.3603, test_acc=0.8600]
+Training:  17%|#7        | 17/100 [00:22<01:45,  1.27s/it, train_loss=1.2946, test_loss=1.3791, test_acc=0.8545]
+Training:  18%|#8        | 18/100 [00:22<01:43,  1.26s/it, train_loss=1.2946, test_loss=1.3791, test_acc=0.8545]
+Training:  18%|#8        | 18/100 [00:24<01:43,  1.26s/it, train_loss=1.2898, test_loss=1.3401, test_acc=0.8590]
+Training:  19%|#9        | 19/100 [00:24<01:41,  1.26s/it, train_loss=1.2898, test_loss=1.3401, test_acc=0.8590]
+Training:  19%|#9        | 19/100 [00:25<01:41,  1.26s/it, train_loss=1.2815, test_loss=1.3570, test_acc=0.8600]
+Training:  20%|##        | 20/100 [00:25<01:39,  1.25s/it, train_loss=1.2815, test_loss=1.3570, test_acc=0.8600]
+Training:  20%|##        | 20/100 [00:26<01:39,  1.25s/it, train_loss=1.2560, test_loss=1.3673, test_acc=0.8565]
+Training:  21%|##1       | 21/100 [00:26<01:37,  1.23s/it, train_loss=1.2560, test_loss=1.3673, test_acc=0.8565]
+Training:  21%|##1       | 21/100 [00:27<01:37,  1.23s/it, train_loss=1.2629, test_loss=1.3678, test_acc=0.8550]
+Training:  22%|##2       | 22/100 [00:27<01:34,  1.22s/it, train_loss=1.2629, test_loss=1.3678, test_acc=0.8550]
+Training:  22%|##2       | 22/100 [00:28<01:34,  1.22s/it, train_loss=1.2666, test_loss=1.3729, test_acc=0.8620]
+Training:  23%|##3       | 23/100 [00:28<01:34,  1.23s/it, train_loss=1.2666, test_loss=1.3729, test_acc=0.8620]
+Training:  23%|##3       | 23/100 [00:30<01:34,  1.23s/it, train_loss=1.2585, test_loss=1.3552, test_acc=0.8610]
+Training:  24%|##4       | 24/100 [00:30<01:33,  1.23s/it, train_loss=1.2585, test_loss=1.3552, test_acc=0.8610]
+Training:  24%|##4       | 24/100 [00:31<01:33,  1.23s/it, train_loss=1.2594, test_loss=1.3501, test_acc=0.8585]
+Training:  25%|##5       | 25/100 [00:31<01:32,  1.23s/it, train_loss=1.2594, test_loss=1.3501, test_acc=0.8585]
+Training:  25%|##5       | 25/100 [00:32<01:32,  1.23s/it, train_loss=1.2453, test_loss=1.3677, test_acc=0.8610]
+Training:  26%|##6       | 26/100 [00:32<01:31,  1.24s/it, train_loss=1.2453, test_loss=1.3677, test_acc=0.8610]
+Training:  26%|##6       | 26/100 [00:33<01:31,  1.24s/it, train_loss=1.2319, test_loss=1.3631, test_acc=0.8580]
+Training:  27%|##7       | 27/100 [00:33<01:30,  1.24s/it, train_loss=1.2319, test_loss=1.3631, test_acc=0.8580]
+Training:  27%|##7       | 27/100 [00:35<01:30,  1.24s/it, train_loss=1.2185, test_loss=1.3774, test_acc=0.8600]
+Training:  28%|##8       | 28/100 [00:35<01:29,  1.24s/it, train_loss=1.2185, test_loss=1.3774, test_acc=0.8600]
+Training:  28%|##8       | 28/100 [00:36<01:29,  1.24s/it, train_loss=1.2233, test_loss=1.3805, test_acc=0.8615]
+Training:  29%|##9       | 29/100 [00:36<01:28,  1.24s/it, train_loss=1.2233, test_loss=1.3805, test_acc=0.8615]
+Training:  29%|##9       | 29/100 [00:37<01:28,  1.24s/it, train_loss=1.2094, test_loss=1.3772, test_acc=0.8610]
+Training:  30%|###       | 30/100 [00:37<01:26,  1.23s/it, train_loss=1.2094, test_loss=1.3772, test_acc=0.8610]
+Training:  30%|###       | 30/100 [00:38<01:26,  1.23s/it, train_loss=1.2166, test_loss=1.3746, test_acc=0.8540]
+Training:  31%|###1      | 31/100 [00:38<01:26,  1.25s/it, train_loss=1.2166, test_loss=1.3746, test_acc=0.8540]
+Training:  31%|###1      | 31/100 [00:40<01:26,  1.25s/it, train_loss=1.2032, test_loss=1.3564, test_acc=0.8605]
+Training:  32%|###2      | 32/100 [00:40<01:24,  1.25s/it, train_loss=1.2032, test_loss=1.3564, test_acc=0.8605]
+Training:  32%|###2      | 32/100 [00:41<01:24,  1.25s/it, train_loss=1.1983, test_loss=1.3994, test_acc=0.8600]
+Training:  33%|###3      | 33/100 [00:41<01:23,  1.25s/it, train_loss=1.1983, test_loss=1.3994, test_acc=0.8600]
+Training:  33%|###3      | 33/100 [00:42<01:23,  1.25s/it, train_loss=1.1976, test_loss=1.3763, test_acc=0.8610]
+Training:  34%|###4      | 34/100 [00:42<01:23,  1.27s/it, train_loss=1.1976, test_loss=1.3763, test_acc=0.8610]
+Training:  34%|###4      | 34/100 [00:44<01:23,  1.27s/it, train_loss=1.1941, test_loss=1.4010, test_acc=0.8565]
+Training:  35%|###5      | 35/100 [00:44<01:24,  1.30s/it, train_loss=1.1941, test_loss=1.4010, test_acc=0.8565]
+Training:  35%|###5      | 35/100 [00:45<01:24,  1.30s/it, train_loss=1.1788, test_loss=1.4357, test_acc=0.8530]
+Training:  36%|###6      | 36/100 [00:45<01:22,  1.29s/it, train_loss=1.1788, test_loss=1.4357, test_acc=0.8530]
+Training:  36%|###6      | 36/100 [00:46<01:22,  1.29s/it, train_loss=1.2009, test_loss=1.3928, test_acc=0.8530]
+Training:  37%|###7      | 37/100 [00:46<01:20,  1.28s/it, train_loss=1.2009, test_loss=1.3928, test_acc=0.8530]
+Training:  37%|###7      | 37/100 [00:47<01:20,  1.28s/it, train_loss=1.1715, test_loss=1.4103, test_acc=0.8560]
+Training:  38%|###8      | 38/100 [00:47<01:19,  1.28s/it, train_loss=1.1715, test_loss=1.4103, test_acc=0.8560]
+Training:  38%|###8      | 38/100 [00:49<01:19,  1.28s/it, train_loss=1.1931, test_loss=1.4191, test_acc=0.8550]
+Training:  39%|###9      | 39/100 [00:49<01:17,  1.27s/it, train_loss=1.1931, test_loss=1.4191, test_acc=0.8550]
+Training:  39%|###9      | 39/100 [00:50<01:17,  1.27s/it, train_loss=1.1631, test_loss=1.4163, test_acc=0.8590]
+Training:  40%|####      | 40/100 [00:50<01:15,  1.26s/it, train_loss=1.1631, test_loss=1.4163, test_acc=0.8590]
+Training:  40%|####      | 40/100 [00:51<01:15,  1.26s/it, train_loss=1.1650, test_loss=1.3978, test_acc=0.8575]
+Training:  41%|####1     | 41/100 [00:51<01:15,  1.27s/it, train_loss=1.1650, test_loss=1.3978, test_acc=0.8575]
+Training:  41%|####1     | 41/100 [00:52<01:15,  1.27s/it, train_loss=1.1448, test_loss=1.4906, test_acc=0.8555]
+Training:  42%|####2     | 42/100 [00:52<01:13,  1.27s/it, train_loss=1.1448, test_loss=1.4906, test_acc=0.8555]
+Training:  42%|####2     | 42/100 [00:54<01:13,  1.27s/it, train_loss=1.1312, test_loss=1.4577, test_acc=0.8505]
+Training:  43%|####3     | 43/100 [00:54<01:11,  1.26s/it, train_loss=1.1312, test_loss=1.4577, test_acc=0.8505]
+Training:  43%|####3     | 43/100 [00:55<01:11,  1.26s/it, train_loss=1.1309, test_loss=1.4702, test_acc=0.8525]
+Training:  44%|####4     | 44/100 [00:55<01:10,  1.26s/it, train_loss=1.1309, test_loss=1.4702, test_acc=0.8525]
+Training:  44%|####4     | 44/100 [00:56<01:10,  1.26s/it, train_loss=1.1541, test_loss=1.4165, test_acc=0.8555]
+Training:  45%|####5     | 45/100 [00:56<01:08,  1.25s/it, train_loss=1.1541, test_loss=1.4165, test_acc=0.8555]
+Training:  45%|####5     | 45/100 [00:58<01:08,  1.25s/it, train_loss=1.1406, test_loss=1.4383, test_acc=0.8535]
+Training:  46%|####6     | 46/100 [00:58<01:19,  1.47s/it, train_loss=1.1406, test_loss=1.4383, test_acc=0.8535]
+Training:  46%|####6     | 46/100 [00:59<01:19,  1.47s/it, train_loss=1.1355, test_loss=1.4557, test_acc=0.8575]
+Training:  47%|####6     | 47/100 [00:59<01:14,  1.40s/it, train_loss=1.1355, test_loss=1.4557, test_acc=0.8575]
+Training:  47%|####6     | 47/100 [01:01<01:14,  1.40s/it, train_loss=1.1268, test_loss=1.4696, test_acc=0.8535]
+Training:  48%|####8     | 48/100 [01:01<01:11,  1.37s/it, train_loss=1.1268, test_loss=1.4696, test_acc=0.8535]
+Training:  48%|####8     | 48/100 [01:02<01:11,  1.37s/it, train_loss=1.1039, test_loss=1.4706, test_acc=0.8605]
+Training:  49%|####9     | 49/100 [01:02<01:06,  1.31s/it, train_loss=1.1039, test_loss=1.4706, test_acc=0.8605]
+Training:  49%|####9     | 49/100 [01:03<01:06,  1.31s/it, train_loss=1.1180, test_loss=1.4761, test_acc=0.8555]
+Training:  50%|#####     | 50/100 [01:03<01:04,  1.30s/it, train_loss=1.1180, test_loss=1.4761, test_acc=0.8555]
+Training:  50%|#####     | 50/100 [01:04<01:04,  1.30s/it, train_loss=1.1094, test_loss=1.4639, test_acc=0.8535]
+Training:  51%|#####1    | 51/100 [01:04<01:02,  1.28s/it, train_loss=1.1094, test_loss=1.4639, test_acc=0.8535]
+Training:  51%|#####1    | 51/100 [01:06<01:02,  1.28s/it, train_loss=1.1027, test_loss=1.5059, test_acc=0.8555]
+Training:  52%|#####2    | 52/100 [01:06<01:01,  1.28s/it, train_loss=1.1027, test_loss=1.5059, test_acc=0.8555]
+Training:  52%|#####2    | 52/100 [01:07<01:01,  1.28s/it, train_loss=1.0944, test_loss=1.4946, test_acc=0.8570]
+Training:  53%|#####3    | 53/100 [01:07<00:59,  1.26s/it, train_loss=1.0944, test_loss=1.4946, test_acc=0.8570]
+Training:  53%|#####3    | 53/100 [01:08<00:59,  1.26s/it, train_loss=1.1114, test_loss=1.4991, test_acc=0.8555]
+Training:  54%|#####4    | 54/100 [01:08<00:57,  1.25s/it, train_loss=1.1114, test_loss=1.4991, test_acc=0.8555]
+Training:  54%|#####4    | 54/100 [01:09<00:57,  1.25s/it, train_loss=1.0684, test_loss=1.4986, test_acc=0.8605]
+Training:  55%|#####5    | 55/100 [01:09<00:55,  1.24s/it, train_loss=1.0684, test_loss=1.4986, test_acc=0.8605]
+Training:  55%|#####5    | 55/100 [01:11<00:55,  1.24s/it, train_loss=1.0774, test_loss=1.5139, test_acc=0.8530]
+Training:  56%|#####6    | 56/100 [01:11<00:55,  1.26s/it, train_loss=1.0774, test_loss=1.5139, test_acc=0.8530]
+Training:  56%|#####6    | 56/100 [01:12<00:55,  1.26s/it, train_loss=1.0717, test_loss=1.4851, test_acc=0.8580]
+Training:  57%|#####6    | 57/100 [01:12<00:54,  1.27s/it, train_loss=1.0717, test_loss=1.4851, test_acc=0.8580]
+Training:  57%|#####6    | 57/100 [01:13<00:54,  1.27s/it, train_loss=1.0825, test_loss=1.4864, test_acc=0.8570]
+Training:  58%|#####8    | 58/100 [01:13<00:53,  1.27s/it, train_loss=1.0825, test_loss=1.4864, test_acc=0.8570]
+Training:  58%|#####8    | 58/100 [01:15<00:53,  1.27s/it, train_loss=1.0607, test_loss=1.5032, test_acc=0.8500]
+Training:  59%|#####8    | 59/100 [01:15<00:55,  1.36s/it, train_loss=1.0607, test_loss=1.5032, test_acc=0.8500]
+Training:  59%|#####8    | 59/100 [01:16<00:55,  1.36s/it, train_loss=1.0577, test_loss=1.4943, test_acc=0.8555]
+Training:  60%|######    | 60/100 [01:16<00:53,  1.34s/it, train_loss=1.0577, test_loss=1.4943, test_acc=0.8555]
+Training:  60%|######    | 60/100 [01:17<00:53,  1.34s/it, train_loss=1.0614, test_loss=1.5499, test_acc=0.8585]
+Training:  61%|######1   | 61/100 [01:17<00:51,  1.32s/it, train_loss=1.0614, test_loss=1.5499, test_acc=0.8585]
+Training:  61%|######1   | 61/100 [01:19<00:51,  1.32s/it, train_loss=1.0551, test_loss=1.5212, test_acc=0.8510]
+Training:  62%|######2   | 62/100 [01:19<00:49,  1.30s/it, train_loss=1.0551, test_loss=1.5212, test_acc=0.8510]
+Training:  62%|######2   | 62/100 [01:20<00:49,  1.30s/it, train_loss=1.0668, test_loss=1.5099, test_acc=0.8580]
+Training:  63%|######3   | 63/100 [01:20<00:47,  1.28s/it, train_loss=1.0668, test_loss=1.5099, test_acc=0.8580]
+Training:  63%|######3   | 63/100 [01:21<00:47,  1.28s/it, train_loss=1.0385, test_loss=1.5674, test_acc=0.8510]
+Training:  64%|######4   | 64/100 [01:21<00:45,  1.26s/it, train_loss=1.0385, test_loss=1.5674, test_acc=0.8510]
+Training:  64%|######4   | 64/100 [01:22<00:45,  1.26s/it, train_loss=1.0450, test_loss=1.5495, test_acc=0.8570]
+Training:  65%|######5   | 65/100 [01:22<00:44,  1.27s/it, train_loss=1.0450, test_loss=1.5495, test_acc=0.8570]
+Training:  65%|######5   | 65/100 [01:24<00:44,  1.27s/it, train_loss=1.0425, test_loss=1.5323, test_acc=0.8510]
+Training:  66%|######6   | 66/100 [01:24<00:43,  1.27s/it, train_loss=1.0425, test_loss=1.5323, test_acc=0.8510]
+Training:  66%|######6   | 66/100 [01:25<00:43,  1.27s/it, train_loss=1.0317, test_loss=1.5551, test_acc=0.8530]
+Training:  67%|######7   | 67/100 [01:25<00:41,  1.26s/it, train_loss=1.0317, test_loss=1.5551, test_acc=0.8530]
+Training:  67%|######7   | 67/100 [01:26<00:41,  1.26s/it, train_loss=1.0451, test_loss=1.5254, test_acc=0.8505]
+Training:  68%|######8   | 68/100 [01:26<00:40,  1.26s/it, train_loss=1.0451, test_loss=1.5254, test_acc=0.8505]
+Training:  68%|######8   | 68/100 [01:27<00:40,  1.26s/it, train_loss=1.0450, test_loss=1.5708, test_acc=0.8480]
+Training:  69%|######9   | 69/100 [01:27<00:38,  1.25s/it, train_loss=1.0450, test_loss=1.5708, test_acc=0.8480]
+Training:  69%|######9   | 69/100 [01:29<00:38,  1.25s/it, train_loss=1.0015, test_loss=1.5676, test_acc=0.8530]
+Training:  70%|#######   | 70/100 [01:29<00:37,  1.25s/it, train_loss=1.0015, test_loss=1.5676, test_acc=0.8530]
+Training:  70%|#######   | 70/100 [01:30<00:37,  1.25s/it, train_loss=0.9885, test_loss=1.5982, test_acc=0.8460]
+Training:  71%|#######1  | 71/100 [01:30<00:35,  1.24s/it, train_loss=0.9885, test_loss=1.5982, test_acc=0.8460]
+Training:  71%|#######1  | 71/100 [01:31<00:35,  1.24s/it, train_loss=1.0407, test_loss=1.6170, test_acc=0.8435]
+Training:  72%|#######2  | 72/100 [01:31<00:34,  1.24s/it, train_loss=1.0407, test_loss=1.6170, test_acc=0.8435]
+Training:  72%|#######2  | 72/100 [01:32<00:34,  1.24s/it, train_loss=1.0114, test_loss=1.5871, test_acc=0.8390]
+Training:  73%|#######3  | 73/100 [01:32<00:33,  1.25s/it, train_loss=1.0114, test_loss=1.5871, test_acc=0.8390]
+Training:  73%|#######3  | 73/100 [01:33<00:33,  1.25s/it, train_loss=1.0019, test_loss=1.5595, test_acc=0.8485]
+Training:  74%|#######4  | 74/100 [01:33<00:32,  1.24s/it, train_loss=1.0019, test_loss=1.5595, test_acc=0.8485]
+Training:  74%|#######4  | 74/100 [01:35<00:32,  1.24s/it, train_loss=1.0037, test_loss=1.6279, test_acc=0.8415]
+Training:  75%|#######5  | 75/100 [01:35<00:30,  1.23s/it, train_loss=1.0037, test_loss=1.6279, test_acc=0.8415]
+Training:  75%|#######5  | 75/100 [01:36<00:30,  1.23s/it, train_loss=0.9770, test_loss=1.5973, test_acc=0.8480]
+Training:  76%|#######6  | 76/100 [01:36<00:29,  1.23s/it, train_loss=0.9770, test_loss=1.5973, test_acc=0.8480]
+Training:  76%|#######6  | 76/100 [01:37<00:29,  1.23s/it, train_loss=1.0048, test_loss=1.5886, test_acc=0.8425]
+Training:  77%|#######7  | 77/100 [01:37<00:28,  1.23s/it, train_loss=1.0048, test_loss=1.5886, test_acc=0.8425]
+Training:  77%|#######7  | 77/100 [01:38<00:28,  1.23s/it, train_loss=0.9760, test_loss=1.6430, test_acc=0.8530]
+Training:  78%|#######8  | 78/100 [01:38<00:27,  1.25s/it, train_loss=0.9760, test_loss=1.6430, test_acc=0.8530]
+Training:  78%|#######8  | 78/100 [01:40<00:27,  1.25s/it, train_loss=0.9700, test_loss=1.6440, test_acc=0.8445]
+Training:  79%|#######9  | 79/100 [01:40<00:26,  1.25s/it, train_loss=0.9700, test_loss=1.6440, test_acc=0.8445]
+Training:  79%|#######9  | 79/100 [01:41<00:26,  1.25s/it, train_loss=0.9767, test_loss=1.6861, test_acc=0.8440]
+Training:  80%|########  | 80/100 [01:41<00:25,  1.27s/it, train_loss=0.9767, test_loss=1.6861, test_acc=0.8440]
+Training:  80%|########  | 80/100 [01:42<00:25,  1.27s/it, train_loss=0.9792, test_loss=1.5911, test_acc=0.8450]
+Training:  81%|########1 | 81/100 [01:42<00:24,  1.27s/it, train_loss=0.9792, test_loss=1.5911, test_acc=0.8450]
+Training:  81%|########1 | 81/100 [01:44<00:24,  1.27s/it, train_loss=0.9765, test_loss=1.5571, test_acc=0.8430]
+Training:  82%|########2 | 82/100 [01:44<00:23,  1.31s/it, train_loss=0.9765, test_loss=1.5571, test_acc=0.8430]
+Training:  82%|########2 | 82/100 [01:45<00:23,  1.31s/it, train_loss=0.9590, test_loss=1.6036, test_acc=0.8445]
+Training:  83%|########2 | 83/100 [01:45<00:22,  1.30s/it, train_loss=0.9590, test_loss=1.6036, test_acc=0.8445]
+Training:  83%|########2 | 83/100 [01:46<00:22,  1.30s/it, train_loss=0.9813, test_loss=1.6505, test_acc=0.8450]
+Training:  84%|########4 | 84/100 [01:46<00:21,  1.32s/it, train_loss=0.9813, test_loss=1.6505, test_acc=0.8450]
+Training:  84%|########4 | 84/100 [01:48<00:21,  1.32s/it, train_loss=0.9823, test_loss=1.6158, test_acc=0.8435]
+Training:  85%|########5 | 85/100 [01:48<00:19,  1.33s/it, train_loss=0.9823, test_loss=1.6158, test_acc=0.8435]
+Training:  85%|########5 | 85/100 [01:49<00:19,  1.33s/it, train_loss=0.9903, test_loss=1.6090, test_acc=0.8430]
+Training:  86%|########6 | 86/100 [01:49<00:18,  1.33s/it, train_loss=0.9903, test_loss=1.6090, test_acc=0.8430]
+Training:  86%|########6 | 86/100 [01:50<00:18,  1.33s/it, train_loss=0.9623, test_loss=1.6837, test_acc=0.8410]
+Training:  87%|########7 | 87/100 [01:50<00:17,  1.31s/it, train_loss=0.9623, test_loss=1.6837, test_acc=0.8410]
+Training:  87%|########7 | 87/100 [01:51<00:17,  1.31s/it, train_loss=0.9550, test_loss=1.6528, test_acc=0.8500]
+Training:  88%|########8 | 88/100 [01:51<00:15,  1.28s/it, train_loss=0.9550, test_loss=1.6528, test_acc=0.8500]
+Training:  88%|########8 | 88/100 [01:53<00:15,  1.28s/it, train_loss=0.9677, test_loss=1.6781, test_acc=0.8330]
+Training:  89%|########9 | 89/100 [01:53<00:13,  1.27s/it, train_loss=0.9677, test_loss=1.6781, test_acc=0.8330]
+Training:  89%|########9 | 89/100 [01:54<00:13,  1.27s/it, train_loss=0.9662, test_loss=1.6153, test_acc=0.8400]
+Training:  90%|######### | 90/100 [01:54<00:12,  1.27s/it, train_loss=0.9662, test_loss=1.6153, test_acc=0.8400]
+Training:  90%|######### | 90/100 [01:55<00:12,  1.27s/it, train_loss=0.9322, test_loss=1.6848, test_acc=0.8405]
+Training:  91%|#########1| 91/100 [01:55<00:11,  1.26s/it, train_loss=0.9322, test_loss=1.6848, test_acc=0.8405]
+Training:  91%|#########1| 91/100 [01:56<00:11,  1.26s/it, train_loss=0.9492, test_loss=1.6851, test_acc=0.8335]
+Training:  92%|#########2| 92/100 [01:56<00:10,  1.26s/it, train_loss=0.9492, test_loss=1.6851, test_acc=0.8335]
+Training:  92%|#########2| 92/100 [01:58<00:10,  1.26s/it, train_loss=0.9268, test_loss=1.7569, test_acc=0.8320]
+Training:  93%|#########3| 93/100 [01:58<00:10,  1.48s/it, train_loss=0.9268, test_loss=1.7569, test_acc=0.8320]
+Training:  93%|#########3| 93/100 [02:00<00:10,  1.48s/it, train_loss=0.9346, test_loss=1.6542, test_acc=0.8415]
+Training:  94%|#########3| 94/100 [02:00<00:08,  1.44s/it, train_loss=0.9346, test_loss=1.6542, test_acc=0.8415]
+Training:  94%|#########3| 94/100 [02:01<00:08,  1.44s/it, train_loss=0.9072, test_loss=1.7487, test_acc=0.8390]
+Training:  95%|#########5| 95/100 [02:01<00:06,  1.39s/it, train_loss=0.9072, test_loss=1.7487, test_acc=0.8390]
+Training:  95%|#########5| 95/100 [02:02<00:06,  1.39s/it, train_loss=0.9384, test_loss=1.6901, test_acc=0.8415]
+Training:  96%|#########6| 96/100 [02:02<00:05,  1.35s/it, train_loss=0.9384, test_loss=1.6901, test_acc=0.8415]
+Training:  96%|#########6| 96/100 [02:04<00:05,  1.35s/it, train_loss=0.9128, test_loss=1.6629, test_acc=0.8420]
+Training:  97%|#########7| 97/100 [02:04<00:04,  1.34s/it, train_loss=0.9128, test_loss=1.6629, test_acc=0.8420]
+Training:  97%|#########7| 97/100 [02:05<00:04,  1.34s/it, train_loss=0.8987, test_loss=1.7346, test_acc=0.8445]
+Training:  98%|#########8| 98/100 [02:05<00:02,  1.35s/it, train_loss=0.8987, test_loss=1.7346, test_acc=0.8445]
+Training:  98%|#########8| 98/100 [02:06<00:02,  1.35s/it, train_loss=0.9222, test_loss=1.8005, test_acc=0.8440]
+Training:  99%|#########9| 99/100 [02:06<00:01,  1.37s/it, train_loss=0.9222, test_loss=1.8005, test_acc=0.8440]
+Training:  99%|#########9| 99/100 [02:08<00:01,  1.37s/it, train_loss=0.9149, test_loss=1.6937, test_acc=0.8400]
+Training: 100%|##########| 100/100 [02:08<00:00,  1.37s/it, train_loss=0.9149, test_loss=1.6937, test_acc=0.8400]
+Training: 100%|##########| 100/100 [02:08<00:00,  1.28s/it, train_loss=0.9149, test_loss=1.6937, test_acc=0.8400]
+
+================================================================================
+COMPARISON RESULTS
+================================================================================
+
+Final Metrics:
+Metric               Centralized     Vertical FL     Difference     
+-----------------------------------------------------------------
+accuracy             0.8245          0.8545          +0.0300 (+3.64%)
+precision            0.5673          0.6768          +0.1095 (+19.31%)
+recall               0.5799          0.5455          -0.0344 (-5.93%)
+f1                   0.5735          0.6041          +0.0306 (+5.33%)
+roc_auc              0.8277          0.8382          +0.0104 (+1.26%)
+tn                   1413.0000       1487.0000       +74.0000 (+5.24%)
+fp                   180.0000        106.0000        -74.0000 (-41.11%)
+fn                   171.0000        185.0000        +14.0000 (+8.19%)
+tp                   236.0000        222.0000        -14.0000 (-5.93%)
+threshold_used       0.3500          0.7200          +0.3700 (+105.71%)
+loss                 0.4345          0.4511          +0.0166 (+3.82%)
+Plot saved to results\plots\vfl_loss_comparison.png
+Plot saved to results\plots\vfl_accuracy_comparison.png
+Plot saved to results\plots\vfl_metrics_comparison.png
+
+[OK] Comparison plots saved to results\plots
+
+================================================================================

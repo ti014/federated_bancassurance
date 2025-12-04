@@ -1,0 +1,31 @@
+# Model Configuration
+model:
+  input_size: 9  # Sẽ được update tự động từ data
+  hidden_sizes: [64, 32]
+  dropout_rate: 0.3
+  activation: 'relu'
+  learning_rate: 0.001
+  batch_size: 32
+  epochs: 10
+
+# Federated Learning Configuration
+fl:
+  n_clients: 5
+  n_rounds: 10
+  local_epochs: 5
+  fraction_fit: 1.0  # Fraction of clients to train per round
+  fraction_evaluate: 1.0  # Fraction of clients to evaluate per round
+  min_fit_clients: 2
+  min_evaluate_clients: 2
+  min_available_clients: 2
+  aggregation_strategy: 'fedavg'  # 'fedavg' or 'fedprox'
+  mu: 0.01  # For FedProx
+
+# Data Configuration
+data:
+  n_samples: 10000
+  test_size: 0.2
+  split_method: 'non_iid'  # 'iid', 'non_iid', 'by_bank'
+  non_iid_alpha: 0.5  # For Non-IID distribution (lower = more Non-IID)
+  random_state: 42
+

@@ -1,0 +1,10 @@
+# Model Configuration
+model:
+  input_size: 9  # Sẽ được update tự động từ data
+  hidden_sizes: [64, 32]
+  dropout_rate: 0.3
+  activation: 'relu'
+  learning_rate: 0.001
+  batch_size: 32
+  epochs: 10
+
