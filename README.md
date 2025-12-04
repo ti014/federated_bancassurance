@@ -25,8 +25,8 @@
 ### 1. Clone repository
 
 ```bash
-git clone <repository-url>
-cd federated_bancassurance_report
+git clone https://github.com/ti014/federated_bancassurance.git
+cd federated_bancassurance
 ```
 
 ### 2. Tạo virtual environment (khuyến nghị)
@@ -96,7 +96,7 @@ federated_bancassurance_report/
 │   ├── load_model.py              # Load trained models
 │   ├── inference.py               # Inference với trained models
 │   ├── run_privacy_analysis.py     # Privacy analysis (wrapper)
-│   ├── generate_roc_curve.py      # Generate ROC curve ✅
+│   ├── generate_roc_curve.py      # Generate ROC curve 
 │   ├── find_optimal_threshold.py  # Tìm optimal threshold cho F1
 │   └── test_optimal_threshold.py  # Test với các thresholds khác nhau
 ├── tests/                         # Unit Tests
@@ -112,16 +112,16 @@ federated_bancassurance_report/
 │   │   ├── bank_bottom_model.pth  # Bottom Model (Bank side) - Vertical FL
 │   │   └── insurer_top_model.pth  # Top Model (Insurance side) - Vertical FL
 │   ├── plots/                     # Generated visualizations
-│   │   ├── roc_curve.png          # ROC Curve với AUC ✅
+│   │   ├── roc_curve.png          # ROC Curve với AUC 
 │   │   └── ...                    # Other plots
-│   ├── privacy_analysis/          # Privacy analysis results ✅
+│   ├── privacy_analysis/          # Privacy analysis results 
 │   │   ├── privacy_analysis_results.csv
 │   │   └── privacy_analysis_plots.png
 │   └── logs/                      # Experiment logs
 │       ├── training.log           # Training logs
-│       ├── privacy_analysis.log   # Privacy analysis logs ✅
-│       └── roc_curve.log          # ROC curve logs ✅
-├── EXPERIMENTS_SUMMARY.md         # Tổng hợp kết quả experiments ✅
+│       ├── privacy_analysis.log   # Privacy analysis logs 
+│       └── roc_curve.log          # ROC curve logs 
+├── EXPERIMENTS_SUMMARY.md         # Tổng hợp kết quả experiments 
 ├── run_tests.py                   # Script để chạy unit tests
 ├── setup.py                       # Package setup
 ├── requirements.txt               # Dependencies
@@ -186,11 +186,11 @@ Script này sẽ tự động:
 7. Log tất cả thông tin vào `results/logs/training.log`
 
 **Kết quả mẫu (với Bank Customer Churn - Improved Model):**
-- **ROC-AUC:** 0.8437 (84.37%) ✅
-- **Accuracy:** 0.8500 (85.00%) ✅
-- **Precision:** 0.6450 (64.50%) ✅
+- **ROC-AUC:** 0.8437 (84.37%) 
+- **Accuracy:** 0.8500 (85.00%) 
+- **Precision:** 0.6450 (64.50%) 
 - **Recall:** 0.5848 (58.48%)
-- **F1-Score:** 0.6134 (61.34%) ✅
+- **F1-Score:** 0.6134 (61.34%) 
 - **Optimal Threshold:** 0.71 (tự động tìm để maximize F1)
 
 **Model Configuration:**
@@ -201,248 +201,3 @@ Script này sẽ tự động:
 - Batch size: 64
 - Learning rate: 0.0005 (với ReduceLROnPlateau)
 - Epochs: 100 (với early stopping)
-
-### Đánh Giá Kết Quả
-
-```bash
-python scripts/evaluate_training_results.py
-```
-
-### Xem Kết Quả Cuối Cùng
-
-```bash
-python scripts/show_results.py
-```
-
-### Chạy Unit Tests
-
-```bash
-python run_tests.py
-```
-
-## Dataset Details
-
-### Bank Customer Churn Dataset
-
-**Bank Features (10 features):**
-- `CreditScore`: Credit score của khách hàng
-- `Geography`: Địa lý (France, Spain, Germany)
-- `Gender`: Giới tính
-- `Age`: Tuổi
-- `Tenure`: Thời gian là khách hàng (năm)
-- `Balance`: Số dư tài khoản
-- `NumOfProducts`: Số sản phẩm ngân hàng đang dùng
-- `HasCrCard`: Có thẻ tín dụng
-- `IsActiveMember`: Là thành viên tích cực
-- `EstimatedSalary`: Thu nhập ước tính
-
-**Insurance Features (6 features - được tạo từ Bank context):**
-- `premium`: Phí bảo hiểm hàng tháng (tính từ Balance và Salary)
-- `policy_term`: Kỳ hạn hợp đồng (năm) - tính từ Tenure
-- `coverage`: Mức bảo hiểm (tính từ Salary)
-- `payment_frequency`: Tần suất thanh toán (Monthly/Quarterly)
-- `policy_type`: Loại bảo hiểm (Basic/Premium)
-- `age_group`: Nhóm tuổi
-
-**Target:** `Exited` → `lapse` (1 = Lapse, 0 = No Lapse)
-
-## Model Architecture
-
-### Bottom Model (Bank)
-
-- Input: 10 Bank features
-- Hidden layers: **[256, 128, 64]** với ReLU activation (tăng capacity)
-- Output: Embedding vector **(64 dimensions)** (tăng từ 32)
-- Dropout: 0.2
-
-### Top Model (Insurance)
-
-- Input: Embedding (64) + 6 Insurance features = **70 dimensions**
-- Hidden layers: **[128, 64, 32]** với ReLU activation (tăng capacity)
-- Output: 1 (probability of lapse)
-- Dropout: 0.2
-
-### Training Configuration
-
-- Batch size: 64
-- Learning rate: 0.0005 (với ReduceLROnPlateau scheduler)
-- Max epochs: 100 (với early stopping, patience=20)
-- Weight decay: 1e-5 (L2 regularization)
-- Loss: BCEWithLogitsLoss với pos_weight (handle class imbalance)
-- SMOTE: Enabled để oversample minority class
-
-## Sử Dụng Trained Models
-
-### 1. Load Models
-
-```bash
-# Load Bottom Model (Bank)
-python scripts/load_model.py --bottom-checkpoint results/models/bank_bottom_model.pth --top-checkpoint results/models/insurer_top_model.pth
-
-# Load Top Model (Insurance)
-python scripts/load_model.py --top-checkpoint results/models/insurer_top_model.pth
-```
-
-### 2. Inference với Vertical FL Models
-
-Để inference với Vertical FL, cần cả 2 models:
-
-```python
-import torch
-from models.splitnn import BottomModel, TopModel
-
-# Load models
-bottom_model = BottomModel(input_size=10, embedding_size=64, hidden_sizes=[256, 128, 64])
-top_model = TopModel(embedding_size=64, insurance_input_size=6, hidden_sizes=[128, 64, 32])
-
-bottom_model.load_state_dict(torch.load('results/models/bank_bottom_model.pth')['model_state_dict'])
-top_model.load_state_dict(torch.load('results/models/insurer_top_model.pth')['model_state_dict'])
-
-bottom_model.eval()
-top_model.eval()
-
-# Inference
-bank_features = torch.FloatTensor([[619, 0, 1, 42, 2, 0, 1, 1, 1, 101348.88]])  # Example
-insurance_features = torch.FloatTensor([[500, 1, 1000000, 1, 1, 1]])  # Example
-
-with torch.no_grad():
-    embedding = bottom_model(bank_features)
-    prediction = top_model(embedding, insurance_features)
-    probability = torch.sigmoid(prediction)
-    
-print(f"Lapse probability: {probability.item():.4f}")
-```
-
-### 3. Privacy Analysis
-
-```bash
-python scripts/run_privacy_analysis.py
-```
-
-Script này sẽ phân tích khả năng recover raw data từ embedding bằng linear regression. Kết quả cho thấy mức độ privacy protection của embedding.
-
-**Kết quả mẫu:**
-- Average R²: 0.8359 (HIGH reconstruction quality)
-- Privacy Level: LOW
-- Recommendation: Cần thêm privacy mechanisms (noise, differential privacy)
-
-### 4. Generate ROC Curve
-
-```bash
-python scripts/generate_roc_curve.py
-```
-
-Generate ROC curve và tính AUC score cho trained model.
-
-**Kết quả:**
-- ROC Curve: `results/plots/roc_curve.png`
-- AUC Score: ~0.84
-
-## Kết Quả
-
-Sau khi chạy `scripts/run_vertical_fl.py`, kết quả sẽ được lưu trong `results/`:
-
-- `results/models/`:
-  - `bank_bottom_model.pth`: Bottom Model (Bank side)
-  - `insurer_top_model.pth`: Top Model (Insurance side)
-- `results/plots/`:
-  - `vfl_loss_curves.png`: Loss curves (train/test)
-  - `vfl_accuracy_curves.png`: Accuracy curves (train/test)
-  - `vfl_train_test_loss.png`: Train vs Test Loss comparison
-  - `vfl_train_test_accuracy.png`: Train vs Test Accuracy comparison
-  - `vfl_metrics_bar.png`: Final metrics bar chart
-  - `roc_curve.png`: ROC Curve với AUC score ✅
-  - `vfl_loss_comparison.png`: VFL vs Centralized Loss comparison (nếu có)
-  - `vfl_accuracy_comparison.png`: VFL vs Centralized Accuracy comparison (nếu có)
-  - `vfl_metrics_comparison.png`: VFL vs Centralized Metrics comparison (nếu có)
-- `results/privacy_analysis/`:
-  - `privacy_analysis_results.csv`: Privacy analysis results
-  - `privacy_analysis_plots.png`: Recovery quality plots
-- `results/logs/`:
-  - `training.log`: Training logs với timestamp và level
-  - `privacy_analysis.log`: Privacy analysis logs
-  - `roc_curve.log`: ROC curve generation logs
-
-## Experiments
-
-### Experiment 1: VFL vs Centralized ⏳
-
-So sánh accuracy và convergence speed giữa VFL và Centralized Learning.
-
-**Chạy:**
-```bash
-python experiments/compare_vfl_centralized.py
-```
-
-Kết quả được lưu tại:
-- `results/comparison_vfl_centralized.txt`: Chi tiết comparison
-- `results/plots/vfl_loss_comparison.png`: Loss comparison plot
-- `results/plots/vfl_accuracy_comparison.png`: Accuracy comparison plot
-- `results/plots/vfl_metrics_comparison.png`: Metrics comparison bar chart
-
-### Experiment 2: Class Imbalance Handling ✅
-
-Đánh giá hiệu quả của SMOTE và weighted loss trong việc xử lý class imbalance.
-
-**Kết quả:**
-- SMOTE được áp dụng tự động trong training
-- Weighted loss (pos_weight) được tính từ training data
-- F1 Score: ~61.34% (cải thiện từ baseline)
-
-### Experiment 3: Privacy Analysis ✅
-
-Phân tích khả năng recover raw data từ embedding `h_B` bằng linear regression.
-
-**Kết quả:**
-- Average R² (reconstruction quality): **0.8359**
-- Privacy Level: **LOW** ⚠️
-- **Kết luận:** Embedding có thể leak information. Đề xuất thêm differential privacy hoặc noise để cải thiện privacy.
-
-**Chạy:**
-```bash
-python scripts/run_privacy_analysis.py
-```
-
-Kết quả được lưu tại `results/privacy_analysis/`:
-- `privacy_analysis_results.csv`: Chi tiết recovery quality cho từng feature
-- `privacy_analysis_plots.png`: Visualization recovery quality
-
-### Experiment 4: ROC Curve Analysis ✅
-
-Generate ROC curve và tính AUC score để đánh giá model performance.
-
-**Chạy:**
-```bash
-python scripts/generate_roc_curve.py
-```
-
-**Kết quả:**
-- ROC Curve: `results/plots/roc_curve.png`
-- AUC Score: **0.8437** (84.37%)
-
-**Tổng hợp kết quả:** Xem `EXPERIMENTS_SUMMARY.md` để biết chi tiết tất cả experiments.
-
-## Lưu Ý
-
-- Code được thiết kế để reproducible: tất cả random seeds được set
-- Ưu tiên sử dụng Bank Customer Churn dataset (phù hợp với Bancassurance domain)
-- Nếu không có dataset, code sẽ tự động generate synthetic data
-- Model có early stopping để tránh overfitting
-- SMOTE được áp dụng tự động để xử lý class imbalance
-- Logging được ghi vào file `results/logs/training.log` và console
-- Unit tests có sẵn trong `tests/` directory
-
-## Tài Liệu Tham Khảo
-
-- [Flower Documentation](https://flower.dev/docs/)
-- [PyTorch Documentation](https://pytorch.org/docs/)
-- [Federated Learning Papers](https://arxiv.org/search/?query=federated+learning)
-- [Vertical Federated Learning Survey](https://arxiv.org/abs/2101.09426)
-
-## License
-
-MIT License
-
-## Tác Giả
-
-Đồ án Machine Learning - Federated Learning cho Lapse Prediction trong Bancassurance Channel
